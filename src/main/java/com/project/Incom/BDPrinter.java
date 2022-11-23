@@ -18,16 +18,16 @@ import java.io.File;
 
 public class BDPrinter {
 
-    private String _nameWire;
     private final JProgressBar _progressBar;
+    private String _nameWire;
 
-    public BDPrinter(JProgressBar bar){
+    public BDPrinter(JProgressBar bar) {
         this._progressBar = bar;
     }
 
     /**
      * Create xml file
-     * */
+     */
     public void createXMLDB(String outFolder, String printData, String nameFiles) {
         setNameWire(printData);
         try {
@@ -191,8 +191,10 @@ public class BDPrinter {
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
             DOMSource domSource = new DOMSource(document);
+
+            createFolder(outFolder);
             StreamResult streamResult = new StreamResult(new File(
-                    outFolder + "\\" + nameFiles + "(" + _nameWire + ")" + ".Message.xml"));
+                    outFolder + "\\Linx\\8920\\Messages" + "\\" + nameFiles + "(" + _nameWire + ")" + ".Message.xml"));
 
             transformer.transform(domSource, streamResult);
             _progressBar.setValue(_progressBar.getValue() + 1);
@@ -202,6 +204,10 @@ public class BDPrinter {
         }
     }
 
+    private void createFolder(String outFolder) {
+        File createFolder = new File(outFolder + "\\Linx\\8920\\Messages");
+        createFolder.mkdirs();
+    }
 
     private void createParamName(Element root, Document document, String name, String type, int text) {
         Element param = document.createElement("Param");

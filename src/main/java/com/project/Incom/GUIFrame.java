@@ -104,9 +104,11 @@ public class GUIFrame implements ActionListener {
                         _parserExcel.parserExcel();
                         _progressBar.setMaximum(_parserExcel.getTextPrint().size());
                         _progressBar.setString("Создание базы");
+                        String normalNameSaveFolder = _saveFolder.getText();
+
                         for (int i = 0; i <= _parserExcel.getTextPrint().size() - 1; i++) {
                             String printName = _parserExcel.getTextPrint().get(i);
-                            new BDPrinter(_progressBar).createXMLDB(_saveFolder.getText(),
+                            new BDPrinter(_progressBar).createXMLDB(normalNameSaveFolder,
                                                                     printName,
                                                                     _parserExcel.getNameFiles());
                         }

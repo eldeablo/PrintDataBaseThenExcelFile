@@ -1,0 +1,7 @@
+# Project exclude paths
+/out/
+/target/
+/.idea/
+/pom.xml/
+/PrinterBDExcel.iml/
+/run.java/
